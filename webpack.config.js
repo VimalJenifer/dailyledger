@@ -6,7 +6,9 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: ['babel-loader']
+                use: {
+                    loader: 'babel-loader'
+                }
             }
         ]
     },
@@ -15,14 +17,13 @@ module.exports = {
     },
     output: {
         path: __dirname + '/dist',
-        publicPath: 'https://dailyledger.herokuapp.com/',
+        publicPath: '/',
         filename: 'bundle.js'
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
-        // host: 'https://dailyledger.herokuapp.com',
         contentBase: './dist',
         hot: true,
         port: 3000
