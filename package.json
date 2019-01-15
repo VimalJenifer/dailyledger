@@ -4,7 +4,7 @@
   "description": "Your daily Expense",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.js --mode development",
+    "start": "webpack-dev-server --config ./webpack.config.js --mode development --port 5000 --host 0.0.0.0",
     "test": "echo \"Error: no test specified\" && exit 1",
     "eject": "react-scripts eject"
   },
@@ -31,6 +31,7 @@
     "babel-loader": "^8.0.4"
   },
   "engines": {
-    "node": "8.11.3"
+    "node": "8.11.3",
+    "npm": "6.5.0"
   }
 }
