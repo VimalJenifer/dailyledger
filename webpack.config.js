@@ -12,9 +12,9 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                // use: {
+                use: {
                     loader: 'babel-loader'
-                // }
+                }
             }
         ]
         // loaders: [
