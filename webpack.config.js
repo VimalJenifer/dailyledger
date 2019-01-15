@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const path = require('path');
 module.exports = {
     entry: './src/index.js',
     module: {
@@ -6,23 +7,34 @@ module.exports = {
             {
                 test: /\.(js|jsx)$/,
                 exclude: /node_modules/,
-                use: ['babel-loader']
+                // use: {
+                    loader: 'babel-loader'
+                // }
             }
         ]
+        // loaders: [
+        //     // Transform JSX with React.
+        //     {
+        //         test: /\.(js|jsx)$/,
+        //         loader: 'babel-loader',
+        //         query: {
+        //             presets: ['es2015', 'react'],
+        //         },
+        //     },
+        // ],
     },
     resolve: {
         extensions: ['*', '.js', '.jsx']
     },
     output: {
-        path: __dirname + '/dist',
-        publicPath: 'https://dailyledger.herokuapp.com/',
+        path: path.resolve(__dirname + '/dist'),
+        publicPath: '/',
         filename: 'bundle.js'
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin()
     ],
     devServer: {
-        // host: 'https://dailyledger.herokuapp.com',
         contentBase: './dist',
         hot: true,
         port: 3000
