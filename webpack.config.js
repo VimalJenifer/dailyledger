@@ -1,5 +1,10 @@
 const webpack = require('webpack');
 const path = require('path');
+
+const GLOBALS = {
+    'process.env.NODE_ENV': JSON.stringify('production')
+};
+
 module.exports = {
     entry: './src/index.js',
     module: {
@@ -32,11 +37,12 @@ module.exports = {
         filename: 'bundle.js'
     },
     plugins: [
-        new webpack.HotModuleReplacementPlugin()
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.DefinePlugin(GLOBALS)
     ],
     devServer: {
         contentBase: './dist',
         hot: true,
-        port: 3000
+        port: 5000
     }
 };
