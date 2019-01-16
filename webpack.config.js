@@ -1,48 +1,39 @@
 const webpack = require('webpack');
 const path = require('path');
-
-const GLOBALS = {
-    'process.env.NODE_ENV': JSON.stringify('production')
-};
+// React v.16 uses some newer JS functionality, so to ensure everything
+// works across all browsers, we're adding babel-polyfill here.
+require('babel-polyfill');
 
 module.exports = {
-    entry: './src/index.js',
-    module: {
-        rules: [
-            {
-                test: /\.(js|jsx)$/,
-                exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader'
-                }
-            }
-        ]
-        // loaders: [
-        //     // Transform JSX with React.
-        //     {
-        //         test: /\.(js|jsx)$/,
-        //         loader: 'babel-loader',
-        //         query: {
-        //             presets: ['es2015', 'react'],
-        //         },
-        //     },
-        // ],
-    },
-    resolve: {
-        extensions: ['*', '.js', '.jsx']
-    },
-    output: {
-        path: path.resolve(__dirname + '/dist'),
-        publicPath: '/',
-        filename: 'bundle.js'
-    },
-    plugins: [
-        new webpack.HotModuleReplacementPlugin(),
-        new webpack.DefinePlugin(GLOBALS)
+  entry: [
+    './src/index'
+  ],
+  module: {
+    loaders: [
+      { test: /\.js?$/, loader: 'babel-loader', exclude: /node_modules/ },
+      { test: /\.s?css$/, loader: 'style-loader!css-loader!sass-loader' },
+    ]
+  },
+  resolve: {
+    modules: [
+      path.resolve('./'),
+      path.resolve('./node_modules'),
     ],
-    devServer: {
-        contentBase: './dist',
-        hot: true,
-        port: 5000
-    }
+    extensions: ['.js','.scss'],
+  },
+  output: {
+    path: path.join(__dirname, '/dist'),
+    publicPath: '/',
+    filename: 'bundle.js'
+  },
+  devtool: 'cheap-eval-source-map',
+  devServer: {
+    contentBase: './dist',
+    hot: true
+  },
+  plugins: [
+    new webpack.optimize.OccurrenceOrderPlugin(),
+    new webpack.HotModuleReplacementPlugin(),
+    new webpack.NoEmitOnErrorsPlugin()
+  ]
 };
