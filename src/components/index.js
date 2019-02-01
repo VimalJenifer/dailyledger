@@ -9,43 +9,43 @@ import IncomeOrExpense from '../service/dailyExpenseService';
 import _ from 'lodash';
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state= {        
-        firstname : 'firstName',
-        handleSubmit : props,
-        login: false,
-        register: false,
-        dailyApplication: true
-        }
-    }
+  constructor(props) {
+    super(props);
+    this.state = {
+      firstname: 'firstName',
+      handleSubmit: props,
+      login: false,
+      register: false,
+      dailyApplication: true
+    };
+  }
 
-    render() {
-        return (
-            <div>
-                {(this.state.dailyApplication && 
-                    <DailyExpense onSubmit={values => IncomeOrExpense(values) }/>                     
-                )}
-                {(this.state.register && 
-                    <Register onSubmit={values => register(values) }/>
-                )}
-                {(this.state.login && 
-                    <Login onSubmit={values => IncomeOrExpense(values) }/>
-                )}
-                <button onClick={()=> this.setState({login:!this.state.login,register:!this.state.register})}>Register</button>
-            </div>    
-        );
-    }
+  render() {
+    return (
+      <div>
+        {(this.state.dailyApplication &&
+        <DailyExpense onSubmit={values => IncomeOrExpense(values)} />
+        )}
+        {(this.state.register &&
+        <Register onSubmit={values => register(values)} />
+        )}
+        {(this.state.login &&
+        <Login onSubmit={values => IncomeOrExpense(values)} />
+        )}
+        <button onClick={() => this.setState({ login: !this.state.login, register: !this.state.register })}>Register</button>
+      </div>
+    );
+  }
 }
 
 App = reduxForm({
-    form:'dailyExpense'  
+  form: 'dailyExpense'
 })(App);
 
 function mapStateToProps(state) {
-    return {
-        app: state
-    };
+  return {
+    app: state
+  };
 }
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps)(App);
 // export default App;

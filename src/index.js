@@ -12,10 +12,10 @@ const store = configureStore();
 
 export const initialState = {};
 ReactDOM.render(
-    <Provider store={store}>
-    <App onSubmit= { values => submit(values) } />    
-    </Provider>,
-    document.getElementById('app')
+	<Provider store={store}>
+		<App onSubmit={values => submit(values)} />
+	</Provider>,
+	document.getElementById('app')
 );
 
 module.hot.accept();

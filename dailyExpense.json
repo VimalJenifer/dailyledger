@@ -1,0 +1,52 @@
+{
+    "dailyExpense": {
+        "user": {
+            "userId":""
+        },
+        "date": "",
+        "expense": [
+            {
+                "category":"",
+                "description":"",
+                "amount":""
+            }
+        ],
+        "income": [
+            {
+                "category":"",
+                "description":"",
+                "amount":""
+            }
+        ],
+        "newExpense": [
+            {
+                "category":"",
+                "description":"",
+                "defaultAmount":""
+            }
+        ],
+        "newIncome": [
+            {
+                "category":"",
+                "description":"",
+                "defaultAmount":""
+            }
+        ]
+    },
+    "prefillData": {
+        "incomeCategory": [],
+        "expenseCategory": [],
+        "expenseDescription": [
+            {
+                "description":"",
+                "defaultAmount":""
+            }
+        ],
+        "incomeDescription": [
+            {
+                "description":"",
+                "defaultAmount":""
+            }
+        ]
+    }
+}
