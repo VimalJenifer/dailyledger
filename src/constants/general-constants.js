@@ -2,7 +2,8 @@
 export const serverInfo = {
     url: 'http://localhost:8080/DailyExpense',
     register: 'http://localhost:8080/DailyExpense/Register1',
-    addExpense: "http://localhost:8080/DailyExpense/addExpense",
+    // addExpense: "http://localhost:8080/DailyExpense/addExpense",
+    addExpense: "https://dailyexpenserestapi.herokuapp.com/DailyExpense/addExpense",
     addIncome: "http://localhost:8080/DailyExpense/addIncome"
 
 }

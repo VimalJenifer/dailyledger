@@ -70,9 +70,9 @@ class DailyExpense extends Component {
           /> */}
 
           <DatePicker
+            className="form-control dateInput"
             key={[GENERAL.APP, 'today'].join('.')}
             name={[GENERAL.APP, 'today'].join('.')}
-            className="form-control dateInput"
             onChange={this.handleChange}
             selected={this.state.startDate}
             showMonthDropdown
