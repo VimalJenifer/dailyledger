@@ -1,0 +1,12 @@
+div
+{
+    border-left: 500pt;
+    position: relative;
+    padding: 2px;
+}
+
+#app 
+{
+    position: relative;
+    border-radius: 8px;
+}

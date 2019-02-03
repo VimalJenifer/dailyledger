@@ -8,23 +8,22 @@ import * as GENERAL_ENUM from '../constants/general-enum';
 import { generateKeyPair } from 'crypto';
 import DatePicker from 'react-datepicker';
 import { renderExpense } from './expense';
+// import moment from 'moment';
 import dropDownSelect from './dropDownSelect';
 
 const renderField = ({ input, label, type, className, meta: { touched, error } }) => (
   <div>
-    <div className="row">
+    <div className={className}>
       <label>{label}</label>
     </div>
-    <div className="row">
-      <div className="col-lg-2">
-        <input
-          {...input}
-          className={className}
-          placeholder={label}
-          type={type}
-        />
-        {touched && error && <span>{error}</span>}
-      </div>
+    <div className={className}>
+      <input
+        {...input}
+        className={className}
+        placeholder={label}
+        type={type}
+      />
+      {touched && error && <span>{error}</span>}
     </div>
   </div>
 );
@@ -38,6 +37,13 @@ class DailyExpense extends Component {
       hasIncome: props,
       task: 'task'
     };
+    this.handleChange = this.handleChange.bind(this);
+  }
+
+  handleChange(date) {
+    this.setState({
+      startDate: date
+    });
   }
 
   render() {
@@ -52,6 +58,24 @@ class DailyExpense extends Component {
             label={GENERAL.USER_ID}
             name={[GENERAL.APP, GENERAL.USER, GENERAL.USER_ID].join('.')}
             type="text"
+          />
+
+          {/* <Field
+            component={renderDatePicker}
+            key={[GENERAL.APP, GENERAL.USER, 'today'].join('.')}
+            label={'today'}
+            name={[GENERAL.APP, GENERAL.USER, GENERAL.USER_ID].join('.')}
+            selected={this.state.startDate}
+            onChange={this.handleChange}
+          /> */}
+
+          <DatePicker
+            key={[GENERAL.APP, 'today'].join('.')}
+            name={[GENERAL.APP, 'today'].join('.')}
+            className="form-control dateInput"
+            onChange={this.handleChange}
+            selected={this.state.startDate}
+            showMonthDropdown
           />
 
           <Field
@@ -74,11 +98,12 @@ class DailyExpense extends Component {
               component={renderExpense}
               label={GENERAL.DEBIT}
               name={[GENERAL.APP, GENERAL.DEBIT].join('.')}
-                 />}
+            />}
 
           <button
             color="primary"
-            type="submit">Submit</button>
+            type="submit"
+          >Submit</button>
         </form>
 
       </div>
@@ -113,11 +138,12 @@ export default connect(mapStateToProps)(DailyExpense);
 
 
 const renderDatePicker = ({ input, placeholder, defaultValue, meta: { touched, error } }) => (
-  <div>
+  <div className="form-group">
     <DatePicker
       {...input}
-      dateForm="MM/DD/YYYY"
-      selected={input.value ? input.value : null} />
+      dateFormat="LLL"
+      selected={input.value ? input.value : null}
+      showMonthDropdown />
     {touched && error && <span>{error}</span>}
   </div>
 );
