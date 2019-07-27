@@ -7,6 +7,7 @@ import Login from './login';
 import { submit, register, addExpenseOrIncome } from '../redux/action/submit';
 import IncomeOrExpense from '../redux/middleware/dailyExpenseService';
 import _ from 'lodash';
+import * as GENERAL from '../constants/general-constants'
 
 class App extends Component {
   constructor(props) {
@@ -30,38 +31,40 @@ class App extends Component {
     });
   }
 
+  renderGeneralMenu(menuType) {
+    return menuType.map(menu => {
+      return (
+        <li 
+          className='list-group-item'
+          key={menu.title}
+          onClick={() => this.selectPage(menu.value)}
+        >
+          {menu.value}           
+        </li>
+      );
+    });
+  }
+
   render() {
     return (
       <div>
+        <div>          
+          <ul className="list-group-horizontal col-sm-4">
+            {this.renderGeneralMenu(GENERAL.GENERAL_MENU)}
+            {this.renderGeneralMenu(GENERAL.USER_MENU)}
+          </ul>                    
+        </div>        
         <div>
-          <ul className="list-group col-sm-1">
-            <li
-            key="login"
-            onClick={()=>this.selectPage(key)}
-            className="list-group-item"
-            >
-              login
-            </li>
-            <li className="list-group-item">Register</li>
-          </ul>
-        </div>
-        <div>
-          <ul><li>new transaction</li>
-          <li>view transaction</li>
-          <li>profile</li>
-          </ul>
-        </div>
-        <div>
-        {(this.state.dailyApplication &&
-        <DailyExpense onSubmit={values => IncomeOrExpense(values)} />
-        )}
-        {(this.state.register &&
-        <Register onSubmit={values => register(values)} />
-        )}
-        {(this.state.login &&
-        <Login onSubmit={values => IncomeOrExpense(values)} />
-        )}
-        <button onClick={() => this.setState({ login: !this.state.login, register: !this.state.register })}>Register</button>
+          {(this.state.dailyApplication &&
+          <DailyExpense onSubmit={values => IncomeOrExpense(values)} />
+          )}
+          {(this.state.register &&
+          <Register onSubmit={values => register(values)} />
+          )}
+          {(this.state.login &&
+          <Login onSubmit={values => IncomeOrExpense(values)} />
+          )}
+          <button onClick={() => this.setState({ login: !this.state.login, register: !this.state.register })}>Register</button>
         </div>
       </div>
     );

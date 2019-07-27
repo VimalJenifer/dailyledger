@@ -47,3 +47,13 @@ export const DESCRIPTION= 'description';
 
 export const AMOUNT= 'amount';
 
+export const GENERAL_MENU = [
+    {title:'login', value: 'login'},
+    {title:'register', value: 'register'}
+];
+
+export const USER_MENU = [
+    {title: 'transaction', value: 'transaction'},
+    {title: 'history', value:'history'},
+    {title: 'profile', value: 'profile'}
+];
