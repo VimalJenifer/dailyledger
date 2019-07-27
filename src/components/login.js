@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import {bindActionCreators} from 'redux';
-import * as Actions from '../action/submit';
+import * as Actions from '../redux/action/submit';
 import * as GENERAL from '../constants/general-constants'
 import { generateKeyPair } from 'crypto';
 

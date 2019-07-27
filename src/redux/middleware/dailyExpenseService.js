@@ -1,6 +1,5 @@
-import * as GENERAL from '../constants/general-constants';
-import { serverInfo } from '../constants/general-constants';
-
+import * as GENERAL from '../../constants/general-constants';
+import { serverInfo } from '../../constants/general-constants';
 
 /* export default function IncomeOrExpense(values) {
     if (values.task === 'income') {
@@ -30,7 +29,12 @@ import { serverInfo } from '../constants/general-constants';
     }
 } */
 
-export default function IncomeOrExpense1(values) {
+export default function IncomeOrExpense(values) {
+    const levl = 'vimal';
+    let ng = 'vimal.jenifer[value]';
+    ng=ng.replace('value','');
+    console.log('ng');
+    console.log(`${ng}`);
     console.log(serverInfo)
     fetch(serverInfo.addExpense, {
         method: "POST", headers: {
@@ -51,4 +55,5 @@ export default function IncomeOrExpense1(values) {
         })
     console.log("success");
     console.log(values);
+    console.log(process.env.NODE_ENV)
 }

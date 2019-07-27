@@ -1,5 +1,5 @@
 import react, { Component } from 'react';
-import {serverInfo} from '../constants/general-constants';
+import {serverInfo} from '../../constants/general-constants';
 
 export default function submit (values) {
     new Promise((resolve,reject) =>  {

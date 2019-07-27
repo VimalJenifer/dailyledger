@@ -4,8 +4,8 @@ import { Field, reduxForm } from 'redux-form';
 import Register from './register';
 import DailyExpense from './dailyExpense';
 import Login from './login';
-import { submit, register, addExpenseOrIncome } from '../action/submit';
-import IncomeOrExpense from '../service/dailyExpenseService';
+import { submit, register, addExpenseOrIncome } from '../redux/action/submit';
+import IncomeOrExpense from '../redux/middleware/dailyExpenseService';
 import _ from 'lodash';
 
 class App extends Component {
@@ -16,13 +16,42 @@ class App extends Component {
       handleSubmit: props,
       login: false,
       register: false,
-      dailyApplication: true
+      dailyApplication: true,
+      income: false,
+      expense: false,
+      viewPage:'login'
     };
+    this.selectPage = this.selectPage.bind(this);
+  }
+
+  selectPage(pageName) {
+    this.setState({
+      viewPage: pageName
+    });
   }
 
   render() {
     return (
       <div>
+        <div>
+          <ul className="list-group col-sm-1">
+            <li
+            key="login"
+            onClick={()=>this.selectPage(key)}
+            className="list-group-item"
+            >
+              login
+            </li>
+            <li className="list-group-item">Register</li>
+          </ul>
+        </div>
+        <div>
+          <ul><li>new transaction</li>
+          <li>view transaction</li>
+          <li>profile</li>
+          </ul>
+        </div>
+        <div>
         {(this.state.dailyApplication &&
         <DailyExpense onSubmit={values => IncomeOrExpense(values)} />
         )}
@@ -33,6 +62,7 @@ class App extends Component {
         <Login onSubmit={values => IncomeOrExpense(values)} />
         )}
         <button onClick={() => this.setState({ login: !this.state.login, register: !this.state.register })}>Register</button>
+        </div>
       </div>
     );
   }
@@ -49,3 +79,4 @@ function mapStateToProps(state) {
 }
 export default connect(mapStateToProps)(App);
 // export default App;
+

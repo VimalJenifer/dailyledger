@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, FieldArray, reduxForm, formValueSelector } from 'redux-form';
 import { bindActionCreators } from 'redux';
-import * as Actions from '../action/submit';
+import {getExpenseOption} from '../redux/action/select-options';
 import * as GENERAL from '../constants/general-constants';
 import * as GENERAL_ENUM from '../constants/general-enum';
 import { generateKeyPair } from 'crypto';
@@ -46,11 +46,14 @@ class DailyExpense extends Component {
     });
   }
 
+  componentDidMount() {
+    this.props.getExpenseOption();
+  }
+
   render() {
     return (
       <div>
         <form onSubmit={this.props.handleSubmit}>
-
           <Field
             className="col-m-10"
             component={renderField}
@@ -71,6 +74,7 @@ class DailyExpense extends Component {
 
           <DatePicker
             className="form-control dateInput"
+            dropdownMode="select"
             key={[GENERAL.APP, 'today'].join('.')}
             name={[GENERAL.APP, 'today'].join('.')}
             onChange={this.handleChange}
@@ -87,6 +91,7 @@ class DailyExpense extends Component {
             label={GENERAL.CREDIT_DEBIT}
             name={this.state.task}
             options={GENERAL_ENUM.task}
+            onChange={this.props.getExpenseOption}
           />
 
           {this.props.hasIncome === 'income' ?
@@ -108,7 +113,11 @@ class DailyExpense extends Component {
 
       </div>
     );
-  }
+  }  
+}
+
+DailyExpense.propTypes = {
+    
 }
 
 DailyExpense = reduxForm({
@@ -133,9 +142,7 @@ DailyExpense = connect(state => {
   };
 })(DailyExpense);
 
-export default connect(mapStateToProps)(DailyExpense);
-
-
+export default connect(mapStateToProps, {getExpenseOption})(DailyExpense);
 
 const renderDatePicker = ({ input, placeholder, defaultValue, meta: { touched, error } }) => (
   <div className="form-group">
@@ -149,6 +156,5 @@ const renderDatePicker = ({ input, placeholder, defaultValue, meta: { touched, e
 );
 
 function getTaskOption() {
-
   return ("<option></option><option value='s'>s</option>");
 }
