@@ -30,7 +30,7 @@ module.exports = {
   devServer: {
     contentBase: './dist',
     hot: true,
-    // port: 3000
+    port: 3000
   },
   plugins: [
     new webpack.optimize.OccurrenceOrderPlugin(),

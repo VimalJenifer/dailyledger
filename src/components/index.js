@@ -15,9 +15,9 @@ class App extends Component {
     this.state = {
       firstname: 'firstName',
       handleSubmit: props,
-      login: false,
+      login: true,
       register: false,
-      dailyApplication: true,
+      dailyApplication: false,
       income: false,
       expense: false,
       viewPage:'login'

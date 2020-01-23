@@ -18,17 +18,19 @@ class Login extends Component {
         return(
             <div>
                 <form onSubmit={this.props.handleSubmit}>
-                    <div>
-                        Hi               
-                    </div>
+                    <div className="form-group">
+                        <Field
+                            label={GENERAL.USER_ID}
+                            name={[GENERAL.USER, GENERAL.LOGIN, GENERAL.USER_ID].join('.')}
+                            key={[GENERAL.USER, GENERAL.LOGIN, GENERAL.USER_ID].join('.')}
+                            component={renderField}
+                            className="form-control mb-2 mr-sm-2"
+                            type="text"
+                        />                    
+                    </div>                    
+                    
                     <Field
-                    label={[GENERAL.USER, GENERAL.LOGIN, GENERAL.USER_ID].join('.')}
-                    name={[GENERAL.USER, GENERAL.LOGIN, GENERAL.USER_ID].join('.')}
-                    key={[GENERAL.USER, GENERAL.LOGIN, GENERAL.USER_ID].join('.')}
-                    component={renderField}
-                    type="text"/>
-                    <Field
-                    label={[GENERAL.USER, GENERAL.LOGIN, GENERAL.PASSWORD].join('.')}
+                    label={GENERAL.PASSWORD}
                     name={[GENERAL.USER, GENERAL.LOGIN, GENERAL.PASSWORD].join('.')}
                     key={[GENERAL.USER, GENERAL.LOGIN, GENERAL.PASSWORD].join('.')}
                     component={renderField}
