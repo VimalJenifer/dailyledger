@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import {bindActionCreators} from 'redux';
 import * as Actions from '../redux/action/submit';
+import {login} from '../redux/action/registerLogin';
 import * as GENERAL from '../constants/general-constants'
 import { generateKeyPair } from 'crypto';
 
@@ -17,7 +18,7 @@ class Login extends Component {
     render() {
         return(
             <div>
-                <form onSubmit={this.props.handleSubmit}>
+                
                     <div className="form-group">
                         <Field
                             label={GENERAL.USER_ID}
@@ -35,24 +36,31 @@ class Login extends Component {
                     key={[GENERAL.USER, GENERAL.LOGIN, GENERAL.PASSWORD].join('.')}
                     component={renderField}
                     type="password"/>
-                    <button type="submit">Submit</button>
-                </form>
+                    <button onClick={this.props.handleSubmit}>Submit</button>
 
             </div>
         );
     }
 }
 
-Login = reduxForm({
-    form: 'Login'
-})(Login);
+Login.propTypes = {
 
-const mapStateToProps = (state) => ({
-    Login: state,
-    userId: _.get(state,[GENERAL.USER, GENERAL.LOGIN, GENERAL.USER_ID].join('.'))
-})
+}
 
-export default connect(mapStateToProps)(Login);
+const mapDispatchToProps = dispatch => {
+    return {
+        handleSubmit: () => dispatch(login())
+    };
+}
+
+const mapStateToProps = (state) => {
+    let userId= _.get(state,[GENERAL.USER, GENERAL.LOGIN, GENERAL.USER_ID].join('.'))
+    return {
+
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
 
 const renderField = ({input, label, type, meta: { touched, error} }) => (
     <div>

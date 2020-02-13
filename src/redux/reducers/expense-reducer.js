@@ -4,16 +4,11 @@ export default function dailyExpense (state = {}, action) {
             case "getExpenseOption": 
                 console.log("vimal");
                 console.log("jenifer");
+                _.set(state, "data.hello", "hello");
                 break; 
             default: 
-                console.log("vimal")
                 return state;
         }
-    
-
-    if (action && action.type === "@@redux-form/CHANGE") {
-        console.log("vimal");
-    }
     // Problem: this only does a shallow copy!
   let newState = { ...state }
 

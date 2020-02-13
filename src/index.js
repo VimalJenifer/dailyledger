@@ -10,7 +10,7 @@ const store = configureStore();
 export const initialState = {};
 ReactDOM.render(
 	<Provider store={store}>
-		<App onSubmit={values => submit(values)} />
+		<App/>
 	</Provider>,
 	document.getElementById('app')
 );

@@ -57,3 +57,15 @@ export default function IncomeOrExpense(values) {
     console.log(values);
     console.log(process.env.NODE_ENV)
 }
+
+export function userLogin(values) {
+    fetch(serverInfo.url+serverInfo.login, {
+        method: "POST", headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(values)
+    }).then((response) => {
+        console.log("Jeni"+ response.text());
+        return response.text();
+    })
+}

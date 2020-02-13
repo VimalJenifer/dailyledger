@@ -15,7 +15,6 @@ class Register extends Component {
     render() {
         return(
         <div>
-            <form onSubmit={this.props.handleSubmit}>
                 <Field
                 label="User I3d"       
                 // name={this.state.userId}
@@ -38,8 +37,7 @@ class Register extends Component {
                 key={this.state.password}
                 component={renderField}
                 type="password"/>    
-                <button type="submit">submit</button>           
-            </form>
+                <button type="submit">submit</button>
         </div>
         );
     };
