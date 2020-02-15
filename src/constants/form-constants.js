@@ -12,6 +12,8 @@ export const userId = 'userId';
 
 export const password = 'password';
 
+export const actionDate = 'actionDate';
+
 
 //formValues
 export const formValues = [form, dailyExpense, values].join('.');

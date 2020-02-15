@@ -1,14 +1,25 @@
 import { createStore, applyMiddleware, compose } from 'redux';
-import {createReducer} from './redux/reducers/index';
+import { createReducer } from './redux/reducers/index';
 import thunk from 'redux-thunk';
 import registerLogin from './redux/middleware/registerLoginService'
 
 const composeEnhancers = (typeof window === 'object' && (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose));
 
 const initialState = {
-    form: {},
+    form: {
+        dailyExpense: {
+            values: {
+                user: {
+                    login: {
+                        userId: 'Vimal1'
+                    }
+                }
+            }
+
+        }
+    },
     data: {
-        isLoggedIn: false
+        isLoggedIn: true
     }
 }
 
