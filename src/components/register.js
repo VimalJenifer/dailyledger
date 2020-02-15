@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import {bindActionCreators} from 'redux';
-import * as Actions from '../action/submit';
+import * as Actions from '../redux/action/submit';
 
 class Register extends Component {
     constructor(props) {
@@ -15,7 +15,6 @@ class Register extends Component {
     render() {
         return(
         <div>
-            <form onSubmit={this.props.handleSubmit}>
                 <Field
                 label="User I3d"       
                 // name={this.state.userId}
@@ -38,8 +37,7 @@ class Register extends Component {
                 key={this.state.password}
                 component={renderField}
                 type="password"/>    
-                <button type="submit">submit</button>           
-            </form>
+                <button type="submit">submit</button>
         </div>
         );
     };

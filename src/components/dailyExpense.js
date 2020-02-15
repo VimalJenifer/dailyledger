@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Field, FieldArray, reduxForm, formValueSelector } from 'redux-form';
 import { bindActionCreators } from 'redux';
-import * as Actions from '../action/submit';
+import {getExpenseOption} from '../redux/action/select-options';
 import * as GENERAL from '../constants/general-constants';
+import * as FORMCONSTANT from '../constants/form-constants';
 import * as GENERAL_ENUM from '../constants/general-enum';
 import { generateKeyPair } from 'crypto';
 import DatePicker from 'react-datepicker';
@@ -46,17 +47,20 @@ class DailyExpense extends Component {
     });
   }
 
+  componentDidMount() {
+    this.props.getExpenseOption();
+  }
+
   render() {
     return (
       <div>
-        <form onSubmit={this.props.handleSubmit}>
 
           <Field
             className="col-m-10"
             component={renderField}
-            key={[GENERAL.APP, GENERAL.USER, GENERAL.USER_ID].join('.')}
+            key={[GENERAL.USER, FORMCONSTANT.login, GENERAL.USER_ID].join('.')}
             label={GENERAL.USER_ID}
-            name={[GENERAL.APP, GENERAL.USER, GENERAL.USER_ID].join('.')}
+            name={[GENERAL.USER, FORMCONSTANT.login, GENERAL.USER_ID].join('.')}
             type="text"
           />
 
@@ -71,8 +75,9 @@ class DailyExpense extends Component {
 
           <DatePicker
             className="form-control dateInput"
-            key={[GENERAL.APP, 'today'].join('.')}
-            name={[GENERAL.APP, 'today'].join('.')}
+            dropdownMode="select"
+            key={[FORMCONSTANT.actionDate].join('.')}
+            name={[FORMCONSTANT.actionDate].join('.')}
             onChange={this.handleChange}
             selected={this.state.startDate}
             showMonthDropdown
@@ -87,6 +92,7 @@ class DailyExpense extends Component {
             label={GENERAL.CREDIT_DEBIT}
             name={this.state.task}
             options={GENERAL_ENUM.task}
+            onChange={this.props.getExpenseOption}
           />
 
           {this.props.hasIncome === 'income' ?
@@ -104,16 +110,15 @@ class DailyExpense extends Component {
             color="primary"
             type="submit"
           >Submit</button>
-        </form>
 
       </div>
     );
-  }
+  }  
 }
 
-DailyExpense = reduxForm({
-  form: 'DailyExpense'
-})(DailyExpense);
+DailyExpense.propTypes = {
+    
+}
 
 const mapStateToProps = (state) => ({
   userId: selector(state, [GENERAL.APP, GENERAL.USER, GENERAL.USER_ID].join('.')),
@@ -133,9 +138,7 @@ DailyExpense = connect(state => {
   };
 })(DailyExpense);
 
-export default connect(mapStateToProps)(DailyExpense);
-
-
+export default connect(mapStateToProps, {getExpenseOption})(DailyExpense);
 
 const renderDatePicker = ({ input, placeholder, defaultValue, meta: { touched, error } }) => (
   <div className="form-group">
@@ -149,6 +152,5 @@ const renderDatePicker = ({ input, placeholder, defaultValue, meta: { touched, e
 );
 
 function getTaskOption() {
-
   return ("<option></option><option value='s'>s</option>");
 }

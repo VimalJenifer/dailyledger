@@ -2,9 +2,12 @@
 export const serverInfo = {
     url: 'http://localhost:8080/DailyExpense',
     register: 'http://localhost:8080/DailyExpense/Register1',
+    login: '/Login',
     // addExpense: "http://localhost:8080/DailyExpense/addExpense",
     addExpense: "https://dailyexpenserestapi.herokuapp.com/DailyExpense/addExpense",
-    addIncome: "http://localhost:8080/DailyExpense/addIncome"
+    addIncome: "http://localhost:8080/DailyExpense/addIncome",
+    getExpenseOption: "http://localhost:8080/DailyExpense/getExpenseOption"
+
 
 }
 
@@ -46,3 +49,13 @@ export const DESCRIPTION= 'description';
 
 export const AMOUNT= 'amount';
 
+export const GENERAL_MENU = [
+    {title:'login', value: 'login'},
+    {title:'register', value: 'register'}
+];
+
+export const USER_MENU = [
+    {title: 'transaction', value: 'transaction'},
+    {title: 'history', value:'history'},
+    {title: 'profile', value: 'profile'}
+];
